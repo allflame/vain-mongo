@@ -1,0 +1,33 @@
+{
+    "name": "vain/mongo",
+    "type": "shared-package",
+    "authors": [
+        {
+            "name": "Taras Girnyk",
+            "email": "taras.p.gyrnik@gmail.com",
+            "homepage": "https://github.com/allflame/vain-mongo",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Vain\\Time\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "vain/core": "dev-master",
+        "vain/connection": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://78.140.176.167"
+        }
+    ],
+    "config": {
+        "secure-http": false
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}
