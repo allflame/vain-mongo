@@ -18,9 +18,9 @@
         "php": ">=7.0",
         "ext-mongodb": "*",
         "mongodb/mongodb": "^1.0.0",
-        "vain/core": "dev-master",
-        "vain/connection": "dev-master",
-        "vain/database": "dev-master"
+        "vain/core": "^0.2",
+        "vain/connection": "^0.2",
+        "vain/database": "^0.2"
     },
     "repositories": [
         {
