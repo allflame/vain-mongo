@@ -9,13 +9,15 @@
  * @link      https://github.com/allflame/vain-mongo
  */
 
-namespace Vain\Mongo\Connection\Factory;
+namespace Vain\Mongo\Extension;
+
+use Vain\Core\Extension\AbstractExtension;
 
 /**
- * Class CMongoConnectionFactory
+ * Class MongoExtension
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class CMongoConnectionFactory extends AbstractConnectionFactory
+class MongoExtension extends AbstractExtension
 {
 }

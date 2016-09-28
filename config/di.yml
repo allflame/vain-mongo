@@ -1,0 +1,15 @@
+parameters:
+  database.connection.factory.phongo.name: 'mongo'
+  database.factory.phongo.name: 'document'
+
+services:
+  database.connection.factory.phongo:
+    class: Vain\Mongo\Factory\PhongoConnectionFactory
+    arguments: ['%database.connection.factory.phongo.name%']
+    tags:
+      - {name: connection.factory}
+  database.factory.phongo:
+    class: Vain\Mongo\Factory\PhongoDatabaseFactory
+    arguments: ['%database.connection.factory.phongo.name%']
+    tags:
+      - {name: database.factory}
