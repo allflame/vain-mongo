@@ -9,9 +9,11 @@
  * @link      https://github.com/allflame/vain-mongo
  */
 
-namespace Vain\Mongo\Factory;
+namespace Vain\Mongo\Database\Factory;
 
+use Vain\Connection\ConnectionInterface;
 use Vain\Database\Factory\AbstractDatabaseFactory;
+use Vain\Mongo\Connection\PhongoConnection;
 
 /**
  * Class PhongoDatabaseFactory
@@ -23,8 +25,11 @@ class PhongoDatabaseFactory extends AbstractDatabaseFactory
     /**
      * @inheritDoc
      */
-    public function createDatabase(array $configData, $connection)
+    public function createDatabase(array $configData, ConnectionInterface $connection)
     {
-        return $connection;
+        /**
+         * @var PhongoConnection $connection
+         */
+        return $connection->establish();
     }
 }

@@ -9,17 +9,19 @@
  * @link      https://github.com/allflame/vain-mongo
  */
 
-namespace Vain\Mongo\Factory;
+namespace Vain\Mongo\Connection;
 
+use Vain\Connection\AbstractConnection;
 use Vain\Connection\Exception\NoRequiredFieldException;
-use Vain\Connection\Factory\AbstractConnectionFactory;
 
 /**
- * Class PhongoConnectionFactory
+ * Class PhongoConnection
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ *
+ * @method \MongoDB establish
  */
-class PhongoConnectionFactory extends AbstractConnectionFactory
+class PhongoConnection extends AbstractConnection
 {
     /**
      * @param array $config
@@ -94,12 +96,12 @@ class PhongoConnectionFactory extends AbstractConnectionFactory
     /**
      * @inheritDoc
      */
-    public function createConnection(array $config)
+    public function doConnect(array $configData)
     {
         list ($username, $password, $connectionString, $database, $options, $driverOptions)
-            = $this->getCredentials($config);
+            = $this->getCredentials($configData);
         $dsn = sprintf('mongodb://%s@%s%s/%s', $username, $password, $connectionString, $database);
 
-        return new \MongoClient($dsn, $options, $driverOptions);
+        return (new \MongoClient($dsn, $options, $driverOptions))->selectDB($database);
     }
 }
