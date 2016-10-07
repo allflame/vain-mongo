@@ -12,7 +12,6 @@
 namespace Vain\Mongo\Connection;
 
 use Vain\Connection\AbstractConnection;
-use Vain\Connection\Exception\NoRequiredFieldException;
 
 /**
  * Class PhongoConnection
@@ -47,24 +46,12 @@ class PhongoConnection extends AbstractConnection
      * @param array $config
      *
      * @return array
-     *
-     * @throws NoRequiredFieldException
      */
     protected function getCredentials(array $config) : array
     {
-        $requiredFields = ['hosts', 'username', 'password', 'dbname'];
-        foreach ($requiredFields as $requiredField) {
-            if (false === array_key_exists($requiredField, $config)) {
-                throw new NoRequiredFieldException($this, $requiredField);
-            }
-        }
-
         $hostsConfig = $config['hosts'];
         $connectionStrings = [];
         foreach ($hostsConfig as $hostConfig) {
-            if (false === array_key_exists('host', $hostConfig)) {
-                throw new NoRequiredFieldException($this, 'host');
-            }
             $port = 27017;
             if (false !== array_key_exists('port', $hostConfig)) {
                 $port = $hostConfig['port'];

@@ -1,13 +1,19 @@
 parameters:
   connection.factory.phongo.name: 'mongo'
   database.factory.phongo.name: 'document'
+  phongo.config.required.fields: ['hosts', 'username', 'password', 'dbname']
 
 services:
-  connection.factory.phongo:
+  connection.factory.phongo.trust:
     class: Vain\Mongo\Connection\Factory\PhongoConnectionFactory
     arguments: ['%connection.factory.phongo.name%']
     tags:
       - {name: connection.factory}
+  connection.factory.phongo.assert:
+    class: Vain\Connection\Factory\Decorator\Assert\ConnectionFactoryAssertDecorator
+    decorates: connection.factory.phongo.trust
+    arguments: ['@connection.factory.phongo.assert.inner', '%phongo.config.required.fields%']
+  connection.factory.phongo: '@connection.factory.phongo.assert'
   database.factory.phongo:
     class: Vain\Mongo\Database\Factory\PhongoDatabaseFactory
     arguments: ['%database.factory.phongo.name%']
