@@ -11,8 +11,7 @@ services:
       - {name: connection.factory}
   connection.factory.phongo.assert:
     class: Vain\Connection\Factory\Decorator\Assert\ConnectionFactoryAssertDecorator
-    decorates: connection.factory.phongo.trust
-    arguments: ['@connection.factory.phongo.assert.inner', '%phongo.config.required.fields%']
+    arguments: ['@connection.factory.phongo.trust', '%phongo.config.required.fields%']
   connection.factory.phongo: '@connection.factory.phongo.assert'
   database.factory.phongo:
     class: Vain\Mongo\Database\Factory\PhongoDatabaseFactory
