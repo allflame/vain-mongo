@@ -7,12 +7,13 @@ services:
   connection.factory.phongo.trust:
     class: Vain\Mongo\Connection\Factory\PhongoConnectionFactory
     arguments: ['%connection.factory.phongo.name%']
-    tags:
-      - {name: connection.factory}
   connection.factory.phongo.assert:
     class: Vain\Connection\Factory\Decorator\Assert\ConnectionFactoryAssertDecorator
     arguments: ['@connection.factory.phongo.trust', '%phongo.config.required.fields%']
-  connection.factory.phongo: '@connection.factory.phongo.assert'
+  connection.factory.phongo:
+    alias: connection.factory.phongo.assert
+    tags:
+      - {name: connection.factory}
   database.factory.phongo:
     class: Vain\Mongo\Database\Factory\PhongoDatabaseFactory
     arguments: ['%database.factory.phongo.name%']
