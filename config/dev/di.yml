@@ -1,0 +1,11 @@
+imports:
+  - { resource: '../di.yml' }
+
+parameters:
+  phongo.config.required.fields: ['hosts', 'username', 'password', 'dbname']
+
+services:
+  connection.factory.phongo:
+    class: Vain\Connection\Factory\Decorator\Assert\ConnectionFactoryAssertDecorator
+    decorates: connection.factory.phongo
+    arguments: ['@connection.factory.phongo.inner', '%phongo.config.required.fields%']
