@@ -5,7 +5,7 @@ parameters:
   phongo.config.required.fields: ['hosts', 'username', 'password', 'dbname']
 
 services:
-  connection.factory.phongo:
+  connection.factory.phongo.assert:
     class: Vain\Connection\Factory\Decorator\Assert\ConnectionFactoryAssertDecorator
     decorates: connection.factory.phongo
-    arguments: ['@connection.factory.phongo.inner', '%phongo.config.required.fields%']
+    arguments: ['@connection.factory.phongo.assert.inner', '%phongo.config.required.fields%']
