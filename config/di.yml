@@ -13,3 +13,5 @@ services:
     arguments: ['%database.factory.phongo.name%']
     tags:
       - {name: database.factory}
+  collection.key.generator.storage:
+    class: Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorage
