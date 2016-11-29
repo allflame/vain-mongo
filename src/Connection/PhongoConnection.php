@@ -88,7 +88,7 @@ class PhongoConnection extends AbstractConnection
     {
         list ($username, $password, $connectionString, $database, $options, $driverOptions)
             = $this->getCredentials($configData);
-        $dsn = sprintf('mongodb://%s@%s%s/%s', $username, $password, $connectionString, $database);
+        $dsn = sprintf('mongodb://%s:%s@%s/%s', $username, $password, $connectionString, $database);
 
         return (new MongoClient($dsn, $options, $driverOptions))->selectDatabase($database);
     }
