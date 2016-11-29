@@ -35,12 +35,15 @@ class CollectionOperation implements OperationInterface
     /**
      * AbstractCollectionOperation constructor.
      *
-     * @param \MongoDB                        $mongodb
+     * @param \MongoDB\Database $mongodb
      * @param CollectionKeyGeneratorInterface $keyGenerator
-     * @param EntityInterface                 $entity
+     * @param EntityInterface $entity
      */
-    public function __construct(\MongoDB $mongodb, CollectionKeyGeneratorInterface $keyGenerator, EntityInterface $entity)
-    {
+    public function __construct(
+        \MongoDB\Database $mongodb,
+        CollectionKeyGeneratorInterface $keyGenerator,
+        EntityInterface $entity
+    ) {
         $this->mongodb = $mongodb;
         $this->keyGenerator = $keyGenerator;
         $this->entity = $entity;
@@ -53,7 +56,7 @@ class CollectionOperation implements OperationInterface
     {
         if (false === $this->mongodb
                 ->selectCollection($this->keyGenerator->getName())
-                ->update(
+                ->updateOne(
                     ['_id' => $this->keyGenerator->generateCollectionKey($this->entity)],
                     $this->entity->toArray(),
                     ['upsert' => true]

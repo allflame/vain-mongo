@@ -32,10 +32,10 @@ class CollectionOperationFactory implements CollectionOperationFactoryInterface
     /**
      * OperationCollectionFactory constructor.
      *
-     * @param \MongoDB                               $mongodb
+     * @param \MongoDB\Database                      $mongodb
      * @param CollectionKeyGeneratorStorageInterface $generatorStorage
      */
-    public function __construct(\MongoDB $mongodb, CollectionKeyGeneratorStorageInterface $generatorStorage)
+    public function __construct(\MongoDB\Database $mongodb, CollectionKeyGeneratorStorageInterface $generatorStorage)
     {
         $this->mongodb = $mongodb;
         $this->generatorStorage = $generatorStorage;
