@@ -1,6 +1,6 @@
 parameters:
-  connection.factory.phongo.name: 'mongo'
-  database.factory.phongo.name: 'mongodb'
+  connection.factory.phongo.name: 'phongo'
+  database.factory.phongo.name: 'mongo'
 
 services:
   connection.factory.phongo:
