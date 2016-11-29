@@ -59,7 +59,7 @@ class CollectionOperation implements OperationInterface
                 ->selectCollection($this->keyGenerator->getName())
                 ->updateOne(
                     ['_id' => $this->keyGenerator->generateCollectionKey($this->entity)],
-                    $this->entity->toArray(),
+                    ['$set' => $this->entity->toArray()],
                     ['upsert' => true]
                 )
         ) {
