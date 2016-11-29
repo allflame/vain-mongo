@@ -13,9 +13,10 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Operation\Factory;
 
 use Vain\Entity\EntityInterface;
-use Vain\Mongo\Collection\Key\Generator\Factory\CollectionKeyGeneratorStorageInterface;
+use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorageInterface;
 use Vain\Mongo\Operation\CollectionOperation;
 use Vain\Operation\OperationInterface;
+use \MongoDB\Database as MongoDatabase;
 
 /**
  * Class CollectionOperationFactory
@@ -32,10 +33,10 @@ class CollectionOperationFactory implements CollectionOperationFactoryInterface
     /**
      * OperationCollectionFactory constructor.
      *
-     * @param \MongoDB\Database                      $mongodb
+     * @param MongoDatabase                          $mongodb
      * @param CollectionKeyGeneratorStorageInterface $generatorStorage
      */
-    public function __construct(\MongoDB\Database $mongodb, CollectionKeyGeneratorStorageInterface $generatorStorage)
+    public function __construct(MongoDatabase $mongodb, CollectionKeyGeneratorStorageInterface $generatorStorage)
     {
         $this->mongodb = $mongodb;
         $this->generatorStorage = $generatorStorage;

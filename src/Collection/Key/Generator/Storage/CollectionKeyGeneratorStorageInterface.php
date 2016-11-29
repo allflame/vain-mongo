@@ -10,7 +10,7 @@
  */
 declare(strict_types = 1);
 
-namespace Vain\Mongo\Collection\Key\Generator\Factory;
+namespace Vain\Mongo\Collection\Key\Generator\Storage;
 
 use Vain\Mongo\Collection\Key\Generator\CollectionKeyGeneratorInterface;
 

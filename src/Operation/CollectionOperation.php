@@ -18,6 +18,7 @@ use Vain\Operation\OperationInterface;
 use Vain\Operation\Result\Failed\FailedOperationResult;
 use Vain\Operation\Result\OperationResultInterface;
 use Vain\Operation\Result\Successful\SuccessfulOperationResult;
+use \MongoDB\Database as MongoDatabase;
 
 /**
  * Class AbstractCollectionOperation
@@ -35,12 +36,12 @@ class CollectionOperation implements OperationInterface
     /**
      * AbstractCollectionOperation constructor.
      *
-     * @param \MongoDB\Database $mongodb
+     * @param MongoDatabase                   $mongodb
      * @param CollectionKeyGeneratorInterface $keyGenerator
-     * @param EntityInterface $entity
+     * @param EntityInterface                 $entity
      */
     public function __construct(
-        \MongoDB\Database $mongodb,
+        MongoDatabase $mongodb,
         CollectionKeyGeneratorInterface $keyGenerator,
         EntityInterface $entity
     ) {

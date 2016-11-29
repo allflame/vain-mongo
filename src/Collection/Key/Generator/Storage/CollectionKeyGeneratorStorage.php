@@ -13,7 +13,6 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Collection\Key\Generator\Storage;
 
 use Vain\Mongo\Collection\Key\Generator\CollectionKeyGeneratorInterface;
-use Vain\Mongo\Collection\Key\Generator\Factory\CollectionKeyGeneratorStorageInterface;
 use Vain\Mongo\Exception\DuplicateKeyGeneratorException;
 use Vain\Mongo\Exception\UnknownKeyGeneratorException;
 
