@@ -18,11 +18,11 @@ use Vain\Mongo\Operation\CollectionOperation;
 use Vain\Operation\OperationInterface;
 
 /**
- * Class OperationCollectionFactory
+ * Class CollectionOperationFactory
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class OperationCollectionFactory implements OperationCollectionFactoryInterface
+class CollectionOperationFactory implements CollectionOperationFactoryInterface
 {
 
     private $mongodb;

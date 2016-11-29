@@ -20,7 +20,7 @@ use Vain\Operation\OperationInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface OperationCollectionFactoryInterface
+interface CollectionOperationFactoryInterface
 {
     /**
      * @param string          $collectionName

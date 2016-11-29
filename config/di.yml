@@ -15,6 +15,6 @@ services:
       - {name: database.factory}
   collection.key.generator.storage:
     class: Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorage
-  operation.factory.collection:
-    class: Vain\Mongo\Operation\Factory\OperationCollectionFactory
+  collection.operation.factory.phongo:
+    class: Vain\Mongo\Operation\Factory\CollectionOperationFactory
     arguments: ['@database.document', '@collection.key.generator.storage']
