@@ -32,7 +32,7 @@ class CollectionKeyGeneratorCompilerPass implements CompilerPassInterface
             return $this;
         }
 
-        $definition = $container->findDefinition('connection.storage');
+        $definition = $container->findDefinition('collection.key.generator.storage');
         $services = $container->findTaggedServiceIds('collection.key.generator');
         foreach ($services as $id => $tags) {
             $definition->addMethodCall('addGenerator', [new Reference($id)]);
