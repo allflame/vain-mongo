@@ -49,5 +49,4 @@ class CollectionOperationFactory implements CollectionOperationFactoryInterface
     {
         return new CollectionOperation($this->mongodb, $this->generatorStorage->getGenerator($collectionName), $entity);
     }
-
 }
