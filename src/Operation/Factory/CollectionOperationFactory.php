@@ -15,6 +15,8 @@ namespace Vain\Mongo\Operation\Factory;
 use Vain\Entity\EntityInterface;
 use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorageInterface;
 use Vain\Mongo\Operation\CollectionOperation;
+use Vain\Operation\Factory\Decorator\AbstractOperationFactoryDecorator;
+use Vain\Operation\Factory\OperationFactoryInterface;
 use Vain\Operation\OperationInterface;
 use \MongoDB\Database as MongoDatabase;
 
@@ -23,7 +25,8 @@ use \MongoDB\Database as MongoDatabase;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class CollectionOperationFactory implements CollectionOperationFactoryInterface
+class CollectionOperationFactory extends AbstractOperationFactoryDecorator implements
+    CollectionOperationFactoryInterface
 {
 
     private $mongodb;
@@ -33,13 +36,19 @@ class CollectionOperationFactory implements CollectionOperationFactoryInterface
     /**
      * OperationCollectionFactory constructor.
      *
+     * @param OperationFactoryInterface              $operationFactory
      * @param MongoDatabase                          $mongodb
      * @param CollectionKeyGeneratorStorageInterface $generatorStorage
      */
-    public function __construct(MongoDatabase $mongodb, CollectionKeyGeneratorStorageInterface $generatorStorage)
-    {
+    public function __construct(
+        OperationFactoryInterface $operationFactory,
+        MongoDatabase $mongodb,
+        CollectionKeyGeneratorStorageInterface $generatorStorage
+
+    ) {
         $this->mongodb = $mongodb;
         $this->generatorStorage = $generatorStorage;
+        parent::__construct($operationFactory);
     }
 
     /**
@@ -47,6 +56,8 @@ class CollectionOperationFactory implements CollectionOperationFactoryInterface
      */
     public function create(string $collectionName, EntityInterface $entity) : OperationInterface
     {
-        return new CollectionOperation($this->mongodb, $this->generatorStorage->getGenerator($collectionName), $entity);
+        return $this->decorate(
+            new CollectionOperation($this->mongodb, $this->generatorStorage->getGenerator($collectionName), $entity)
+        );
     }
 }
