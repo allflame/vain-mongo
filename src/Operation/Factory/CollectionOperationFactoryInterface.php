@@ -28,5 +28,5 @@ interface CollectionOperationFactoryInterface
      *
      * @return OperationInterface
      */
-    public function create(string $collectionName, EntityInterface $entity) : OperationInterface;
+    public function collectionOperation(string $collectionName, EntityInterface $entity) : OperationInterface;
 }

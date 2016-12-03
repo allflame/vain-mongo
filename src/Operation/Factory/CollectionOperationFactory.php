@@ -54,7 +54,7 @@ class CollectionOperationFactory extends AbstractOperationFactoryDecorator imple
     /**
      * @inheritDoc
      */
-    public function create(string $collectionName, EntityInterface $entity) : OperationInterface
+    public function collectionOperation(string $collectionName, EntityInterface $entity) : OperationInterface
     {
         return $this->decorate(
             new CollectionOperation($this->mongodb, $this->generatorStorage->getGenerator($collectionName), $entity)
