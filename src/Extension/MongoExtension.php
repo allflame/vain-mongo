@@ -11,9 +11,7 @@
 
 namespace Vain\Mongo\Extension;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Vain\Core\Extension\AbstractExtension;
-use Vain\Mongo\Extension\Compiler\CollectionKeyGeneratorCompilerPass;
 
 /**
  * Class MongoExtension
@@ -22,13 +20,4 @@ use Vain\Mongo\Extension\Compiler\CollectionKeyGeneratorCompilerPass;
  */
 class MongoExtension extends AbstractExtension
 {
-    /**
-     * @inheritDoc
-     */
-    public function load(array $configs, ContainerBuilder $container) : AbstractExtension
-    {
-        $container->addCompilerPass(new CollectionKeyGeneratorCompilerPass());
-
-        return parent::load($configs, $container);
-    }
 }

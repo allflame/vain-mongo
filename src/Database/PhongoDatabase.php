@@ -18,11 +18,11 @@ use Vain\Database\Generator\GeneratorInterface;
 use Vain\Mongo\Connection\PhongoConnection;
 
 /**
- * Class MongoDatabase
+ * Class PhongoDatabase
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class MongoDatabase extends Database implements DatabaseInterface
+class PhongoDatabase extends Database implements DatabaseInterface
 {
     private $connection;
 

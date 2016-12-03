@@ -12,13 +12,12 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Operation;
 
-use Vain\Entity\EntityInterface;
-use Vain\Mongo\Collection\Key\Generator\CollectionKeyGeneratorInterface;
+use Vain\Mongo\Database\PhongoDatabase;
+use Vain\Mongo\Entity\DocumentEntityInterface;
 use Vain\Operation\OperationInterface;
 use Vain\Operation\Result\Failed\FailedOperationResult;
 use Vain\Operation\Result\OperationResultInterface;
 use Vain\Operation\Result\Successful\SuccessfulOperationResult;
-use \MongoDB\Database as MongoDatabase;
 
 /**
  * Class AbstractCollectionOperation
@@ -29,24 +28,25 @@ class CollectionOperation implements OperationInterface
 {
     private $mongodb;
 
-    private $keyGenerator;
+    private $collectionName;
 
     private $entity;
 
     /**
-     * AbstractCollectionOperation constructor.
+     * CollectionOperation constructor.
      *
-     * @param MongoDatabase                   $mongodb
-     * @param CollectionKeyGeneratorInterface $keyGenerator
-     * @param EntityInterface                 $entity
+     * @param PhongoDatabase          $mongodb
+     * @param string                  $collectionName
+     * @param DocumentEntityInterface $entity
      */
     public function __construct(
-        MongoDatabase $mongodb,
-        CollectionKeyGeneratorInterface $keyGenerator,
-        EntityInterface $entity
+        PhongoDatabase $mongodb,
+        string $collectionName,
+        DocumentEntityInterface $entity
+
     ) {
         $this->mongodb = $mongodb;
-        $this->keyGenerator = $keyGenerator;
+        $this->collectionName = $collectionName;
         $this->entity = $entity;
     }
 
@@ -56,9 +56,9 @@ class CollectionOperation implements OperationInterface
     public function execute() : OperationResultInterface
     {
         if (false === $this->mongodb
-                ->selectCollection($this->keyGenerator->getName())
+                ->selectCollection($this->collectionName)
                 ->updateOne(
-                    ['_id' => $this->keyGenerator->generateCollectionKey($this->entity)],
+                    ['_id' => $this->entity->getDocumentId()],
                     ['$set' => $this->entity->toArray()],
                     ['upsert' => true]
                 )
