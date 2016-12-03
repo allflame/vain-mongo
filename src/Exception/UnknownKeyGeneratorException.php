@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Exception;
 
-use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorageInterface;
+use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyStorageInterface;
 
 /**
  * Class UnknownKeyGeneratorException
@@ -24,14 +24,14 @@ class UnknownKeyGeneratorException extends KeyGeneratorStorageException
     /**
      * UnknownConnectionTypeException constructor.
      *
-     * @param CollectionKeyGeneratorStorageInterface $generatorStorage
-     * @param string                                 $collectionName
+     * @param CollectionKeyStorageInterface $keyStorage
+     * @param string                        $collectionName
      */
-    public function __construct(CollectionKeyGeneratorStorageInterface $generatorStorage, string $collectionName)
+    public function __construct(CollectionKeyStorageInterface $keyStorage, string $collectionName)
     {
         parent::__construct(
-            $generatorStorage,
-            sprintf('Cannot create key generator for unknown collection %s', $collectionName)
+            $keyStorage,
+            sprintf('Cannot create key for unknown collection %s', $collectionName)
         );
     }
 }

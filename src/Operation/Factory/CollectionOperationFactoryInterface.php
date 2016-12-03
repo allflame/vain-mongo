@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Operation\Factory;
 
-use Vain\Mongo\Entity\DocumentEntityInterface;
+use Vain\Entity\EntityInterface;
 use Vain\Operation\OperationInterface;
 
 /**
@@ -23,10 +23,10 @@ use Vain\Operation\OperationInterface;
 interface CollectionOperationFactoryInterface
 {
     /**
-     * @param string                  $collectionName
-     * @param DocumentEntityInterface $entity
+     * @param string          $collectionName
+     * @param EntityInterface $entity
      *
      * @return OperationInterface
      */
-    public function collectionOperation(string $collectionName, DocumentEntityInterface $entity) : OperationInterface;
+    public function collectionOperation(string $collectionName, EntityInterface $entity) : OperationInterface;
 }

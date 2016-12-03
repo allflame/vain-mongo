@@ -12,8 +12,8 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Exception;
 
-use Vain\Mongo\Collection\Key\Generator\CollectionKeyGeneratorInterface;
-use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorageInterface;
+use Vain\Mongo\Collection\Key\CollectionKeyInterface;
+use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyStorageInterface;
 
 /**
  * Class DuplicateKeyGeneratorException
@@ -29,23 +29,23 @@ class DuplicateKeyGeneratorException extends KeyGeneratorStorageException
     /**
      * DuplicateConnectionFactoryException constructor.
      *
-     * @param CollectionKeyGeneratorStorageInterface $generatorStorage
-     * @param string                                 $name
-     * @param CollectionKeyGeneratorInterface        $new
-     * @param CollectionKeyGeneratorInterface        $old
+     * @param CollectionKeyStorageInterface $keyStorage
+     * @param string                        $name
+     * @param CollectionKeyInterface        $new
+     * @param CollectionKeyInterface        $old
      */
     public function __construct(
-        CollectionKeyGeneratorStorageInterface $generatorStorage,
+        CollectionKeyStorageInterface $keyStorage,
         string $name,
-        CollectionKeyGeneratorInterface $new,
-        CollectionKeyGeneratorInterface $old
+        CollectionKeyInterface $new,
+        CollectionKeyInterface $old
     ) {
         $this->new = $new;
         $this->old = $old;
         parent::__construct(
-            $generatorStorage,
+            $keyStorage,
             sprintf(
-                'Trying to register key generator %s by the same alias %s as %s',
+                'Trying to register key %s by the same alias %s as %s',
                 get_class($new),
                 $name,
                 get_class($old)
@@ -54,17 +54,17 @@ class DuplicateKeyGeneratorException extends KeyGeneratorStorageException
     }
 
     /**
-     * @return CollectionKeyGeneratorInterface
+     * @return CollectionKeyInterface
      */
-    public function getNew() : CollectionKeyGeneratorInterface
+    public function getNew() : CollectionKeyInterface
     {
         return $this->new;
     }
 
     /**
-     * @return CollectionKeyGeneratorInterface
+     * @return CollectionKeyInterface
      */
-    public function getOld() : CollectionKeyGeneratorInterface
+    public function getOld() : CollectionKeyInterface
     {
         return $this->old;
     }

@@ -13,7 +13,7 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Exception;
 
 use Vain\Core\Exception\AbstractCoreException;
-use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorageInterface;
+use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyStorageInterface;
 
 /**
  * Class KeyGeneratorStorageException
@@ -22,31 +22,31 @@ use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorageInt
  */
 class KeyGeneratorStorageException extends AbstractCoreException
 {
-    private $generatorStorage;
+    private $keyStorage;
 
     /**
      * KeyGeneratorStorageException constructor.
      *
-     * @param CollectionKeyGeneratorStorageInterface $generatorStorage
-     * @param string                                 $message
-     * @param int                                    $code
-     * @param \Exception|null                        $previous
+     * @param CollectionKeyStorageInterface $keyStorage
+     * @param string                        $message
+     * @param int                           $code
+     * @param \Exception|null               $previous
      */
     public function __construct(
-        CollectionKeyGeneratorStorageInterface $generatorStorage,
+        CollectionKeyStorageInterface $keyStorage,
         string $message,
         int $code = 500,
         \Exception $previous = null
     ) {
-        $this->generatorStorage = $generatorStorage;
+        $this->keyStorage = $keyStorage;
         parent::__construct($message, $code, $previous);
     }
 
     /**
-     * @return CollectionKeyGeneratorStorageInterface
+     * @return CollectionKeyStorageInterface
      */
-    public function getGeneratorStorage(): CollectionKeyGeneratorStorageInterface
+    public function getKeyStorage(): CollectionKeyStorageInterface
     {
-        return $this->generatorStorage;
+        return $this->keyStorage;
     }
 }

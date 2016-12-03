@@ -12,8 +12,9 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Operation\Factory;
 
+use Vain\Entity\EntityInterface;
+use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyStorageInterface;
 use Vain\Mongo\Database\PhongoDatabase;
-use Vain\Mongo\Entity\DocumentEntityInterface;
 use Vain\Mongo\Operation\CollectionOperation;
 use Vain\Operation\Factory\Decorator\AbstractOperationFactoryDecorator;
 use Vain\Operation\Factory\OperationFactoryInterface;
@@ -30,25 +31,33 @@ class CollectionOperationFactory extends AbstractOperationFactoryDecorator imple
 
     private $mongodb;
 
+    private $keyStorage;
+
     /**
      * OperationCollectionFactory constructor.
      *
-     * @param OperationFactoryInterface $operationFactory
-     * @param PhongoDatabase            $mongodb
+     * @param OperationFactoryInterface     $operationFactory
+     * @param PhongoDatabase                $mongodb
+     * @param CollectionKeyStorageInterface $keyStorage
      */
     public function __construct(
         OperationFactoryInterface $operationFactory,
-        PhongoDatabase $mongodb
+        PhongoDatabase $mongodb,
+        CollectionKeyStorageInterface $keyStorage
+
     ) {
         $this->mongodb = $mongodb;
+        $this->keyStorage = $keyStorage;
         parent::__construct($operationFactory);
     }
 
     /**
      * @inheritDoc
      */
-    public function collectionOperation(string $collectionName, DocumentEntityInterface $entity) : OperationInterface
+    public function collectionOperation(string $collectionName, EntityInterface $entity) : OperationInterface
     {
-        return $this->decorate(new CollectionOperation($this->mongodb, $collectionName, $entity));
+        return $this->decorate(
+            new CollectionOperation($this->mongodb, $this->keyStorage->getKey($collectionName), $entity)
+        );
     }
 }

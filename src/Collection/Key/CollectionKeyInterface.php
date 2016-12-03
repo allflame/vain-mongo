@@ -10,19 +10,26 @@
  */
 declare(strict_types = 1);
 
-namespace Vain\Mongo\Entity;
+namespace Vain\Mongo\Collection\Key;
 
 use Vain\Entity\EntityInterface;
 
 /**
- * Class DocumentEntityInterface
+ * Interface CollectionKeyInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface DocumentEntityInterface extends EntityInterface
+interface CollectionKeyInterface
 {
     /**
      * @return string
      */
-    public function getDocumentId() : string;
+    public function getName() : string;
+
+    /**
+     * @param EntityInterface $entity
+     *
+     * @return string
+     */
+    public function generate(EntityInterface $entity) : string;
 }

@@ -13,8 +13,10 @@ services:
     arguments: ['%database.factory.phongo.name%']
     tags:
       - {name: database.factory}
+  collection.key.storage:
+    class: Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorage
   collection.operation.factory.phongo:
     parent: operation.factory.abstract
     class: Vain\Mongo\Operation\Factory\CollectionOperationFactory
-    arguments: ['@database.document']
+    arguments: ['@database.document', '@collection.key.storage']
   collection.operation.factory: '@collection.operation.factory.phongo'
