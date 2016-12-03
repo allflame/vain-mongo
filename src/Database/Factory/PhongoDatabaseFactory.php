@@ -14,6 +14,7 @@ namespace Vain\Mongo\Database\Factory;
 use Vain\Connection\ConnectionInterface;
 use Vain\Database\Factory\AbstractDatabaseFactory;
 use Vain\Mongo\Connection\PhongoConnection;
+use Vain\Mongo\Database\MongoDatabase;
 
 /**
  * Class PhongoDatabaseFactory
@@ -30,6 +31,6 @@ class PhongoDatabaseFactory extends AbstractDatabaseFactory
         /**
          * @var PhongoConnection $connection
          */
-        return $connection->establish();
+        return new MongoDatabase($connection);
     }
 }

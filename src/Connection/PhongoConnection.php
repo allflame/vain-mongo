@@ -11,6 +11,7 @@
 
 namespace Vain\Mongo\Connection;
 
+use MongoDB\Database;
 use Vain\Connection\AbstractConnection;
 use \MongoDB\Client as MongoClient;
 
@@ -19,7 +20,7 @@ use \MongoDB\Client as MongoClient;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  *
- * @method \MongoDB establish
+ * @method Database establish
  */
 class PhongoConnection extends AbstractConnection
 {
