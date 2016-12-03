@@ -10,9 +10,7 @@
  */
 declare(strict_types = 1);
 
-namespace Vain\Mongo\Collection\Key\Generator;
-
-use Vain\Mongo\Collection\Key\CollectionKeyInterface;
+namespace Vain\Mongo\Collection\Key;
 
 /**
  * Class AbstractCollectionKeyGenerator
