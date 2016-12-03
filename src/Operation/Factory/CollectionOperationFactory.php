@@ -13,7 +13,7 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Operation\Factory;
 
 use Vain\Entity\EntityInterface;
-use Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyStorageInterface;
+use Vain\Mongo\Collection\Key\Storage\CollectionKeyStorageInterface;
 use Vain\Mongo\Database\PhongoDatabase;
 use Vain\Mongo\Operation\CollectionOperation;
 use Vain\Operation\Factory\Decorator\AbstractOperationFactoryDecorator;

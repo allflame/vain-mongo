@@ -14,7 +14,7 @@ services:
     tags:
       - {name: database.factory}
   collection.key.storage:
-    class: Vain\Mongo\Collection\Key\Generator\Storage\CollectionKeyGeneratorStorage
+    class: Vain\Mongo\Collection\Key\Storage\CollectionKeyStorage
   collection.operation.factory.phongo:
     parent: operation.factory.abstract
     class: Vain\Mongo\Operation\Factory\CollectionOperationFactory
