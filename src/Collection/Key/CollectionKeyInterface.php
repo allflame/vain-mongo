@@ -31,5 +31,12 @@ interface CollectionKeyInterface
      *
      * @return string
      */
-    public function generate(EntityInterface $entity) : string;
+    public function generateId(EntityInterface $entity) : string;
+
+    /**
+     * @param EntityInterface $entity
+     *
+     * @return array
+     */
+    public function generateCriteria(EntityInterface $entity) : array;
 }
