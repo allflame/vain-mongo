@@ -19,4 +19,4 @@ services:
     parent: operation.factory.abstract
     class: Vain\Mongo\Document\Operation\Factory\DocumentOperationFactory
     arguments: ['@database.document', '@collection.key.storage']
-  document.operation.factory: '@collection.operation.factory.phongo'
+  document.operation.factory: '@document.operation.factory.phongo'
