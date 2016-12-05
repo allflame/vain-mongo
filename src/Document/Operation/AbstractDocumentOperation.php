@@ -90,7 +90,7 @@ abstract class AbstractDocumentOperation implements OperationInterface
     /**
      * @return string
      */
-    public function getDocumentId() : string
+    public function generateDocumentId() : string
     {
         return $this->collection->generateId($this->document);
     }

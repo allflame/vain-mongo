@@ -28,12 +28,13 @@ class DocumentUpsertOperation extends AbstractDocumentOperation
      */
     public function execute() : OperationResultInterface
     {
+        $documentId = $this->generateDocumentId();
         if (false === $this
                 ->getMongoDb()
                 ->selectCollection($this->getCollectionName())
                 ->updateOne(
-                    $this->getCriteria(),
-                    ['$set' => array_merge(['_id' => $this->getDocumentId()], $this->getDocumentData())],
+                    ['_id' => $documentId],
+                    ['$set' => array_merge(['_id' => $documentId], $this->getDocumentData())],
                     ['upsert' => true]
                 )
         ) {
