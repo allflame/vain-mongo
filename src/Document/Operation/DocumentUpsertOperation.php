@@ -33,7 +33,7 @@ class DocumentUpsertOperation extends AbstractDocumentOperation
                 ->selectCollection($this->getCollectionName())
                 ->updateOne(
                     $this->getCriteria(),
-                    ['$set' => $this->getDocumentData()],
+                    ['$set' => array_merge(['_id' => $this->getDocumentId()], $this->getDocumentData())],
                     ['upsert' => true]
                 )
         ) {
