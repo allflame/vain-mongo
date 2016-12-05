@@ -12,8 +12,6 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation;
 
-use Vain\Mongo\Database\PhongoDatabase;
-use Vain\Mongo\Document\DocumentEntityInterface;
 use Vain\Operation\Result\Failed\FailedOperationResult;
 use Vain\Operation\Result\OperationResultInterface;
 use Vain\Operation\Result\Successful\SuccessfulOperationResult;
@@ -25,26 +23,6 @@ use Vain\Operation\Result\Successful\SuccessfulOperationResult;
  */
 class DocumentDeleteOperation extends AbstractDocumentOperation
 {
-    private $criteria;
-
-    /**
-     * CollectionUpsertOperation constructor.
-     *
-     * @param PhongoDatabase          $mongoDb
-     * @param string                  $collectionName
-     * @param DocumentEntityInterface $entity
-     * @param array                   $criteria
-     */
-    public function __construct(
-        PhongoDatabase $mongoDb,
-        $collectionName,
-        DocumentEntityInterface $entity,
-        array $criteria
-    ) {
-        $this->criteria = $criteria;
-        parent::__construct($mongoDb, $collectionName, $entity);
-    }
-
     /**
      * @inheritDoc
      */
@@ -53,7 +31,7 @@ class DocumentDeleteOperation extends AbstractDocumentOperation
         if (false === $this
                 ->getMongoDb()
                 ->selectCollection($this->getCollectionName())
-                ->deleteOne($this->criteria)
+                ->deleteOne($this->getCriteria())
         ) {
             return new FailedOperationResult();
         }

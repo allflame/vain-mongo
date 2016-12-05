@@ -12,9 +12,9 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation\Factory;
 
-use Vain\Mongo\Collection\Key\Storage\CollectionKeyStorageInterface;
+use Vain\Mongo\Collection\CollectionInterface;
 use Vain\Mongo\Database\PhongoDatabase;
-use Vain\Mongo\Document\DocumentEntityInterface;
+use Vain\Mongo\Document\DocumentInterface;
 use Vain\Mongo\Document\Operation\DocumentDeleteOperation;
 use Vain\Mongo\Document\Operation\DocumentInsertOperation;
 use Vain\Mongo\Document\Operation\DocumentUpdateOperation;
@@ -34,86 +34,53 @@ class DocumentOperationFactory extends AbstractOperationFactoryDecorator impleme
 
     private $mongodb;
 
-    private $keyStorage;
-
     /**
      * OperationCollectionFactory constructor.
      *
      * @param OperationFactoryInterface     $operationFactory
      * @param PhongoDatabase                $mongodb
-     * @param CollectionKeyStorageInterface $keyStorage
      */
     public function __construct(
         OperationFactoryInterface $operationFactory,
-        PhongoDatabase $mongodb,
-        CollectionKeyStorageInterface $keyStorage
+        PhongoDatabase $mongodb
     ) {
         $this->mongodb = $mongodb;
-        $this->keyStorage = $keyStorage;
         parent::__construct($operationFactory);
     }
 
     /**
      * @inheritDoc
      */
-    public function createDocument(string $collectionName, DocumentEntityInterface $entity) : OperationInterface
+    public function createDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface
     {
-        return $this->decorate(
-            new DocumentInsertOperation(
-                $this->mongodb,
-                $collectionName,
-                $entity,
-                $this->keyStorage->getKey($collectionName)->generateId($entity)
-            )
-        );
+        return $this->decorate(new DocumentInsertOperation($this->mongodb, $collection, $document));
     }
 
     /**
      * @inheritDoc
      */
-    public function deleteDocument(string $collectionName, DocumentEntityInterface $entity) : OperationInterface
+    public function deleteDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface
     {
-        return $this->decorate(
-            new DocumentDeleteOperation(
-                $this->mongodb,
-                $collectionName,
-                $entity,
-                $this->keyStorage->getKey($collectionName)->generateCriteria($entity)
-            )
-        );
+        return $this->decorate(new DocumentDeleteOperation($this->mongodb, $collection, $document));
     }
 
     /**
      * @inheritDoc
      */
     public function updateDocument(
-        string $collectionName,
-        DocumentEntityInterface $newEntity,
-        DocumentEntityInterface $oldEntity
+        CollectionInterface $collection,
+        DocumentInterface $newDocument,
+        DocumentInterface $oldDocument
     ) : OperationInterface
     {
-        return $this->decorate(
-            new DocumentUpdateOperation(
-                $this->mongodb,
-                $collectionName,
-                $newEntity,
-                $this->keyStorage->getKey($collectionName)->generateCriteria($oldEntity)
-            )
-        );
+        return $this->decorate(new DocumentUpdateOperation($this->mongodb, $collection, $newDocument));
     }
 
     /**
      * @inheritDoc
      */
-    public function upsertDocument(string $collectionName, DocumentEntityInterface $entity) : OperationInterface
+    public function upsertDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface
     {
-        return $this->decorate(
-            new DocumentUpsertOperation(
-                $this->mongodb,
-                $collectionName,
-                $entity,
-                $this->keyStorage->getKey($collectionName)->generateCriteria($entity)
-            )
-        );
+        return $this->decorate(new DocumentUpsertOperation($this->mongodb, $collection, $document));
     }
 }

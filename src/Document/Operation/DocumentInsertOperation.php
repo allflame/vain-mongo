@@ -12,8 +12,6 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation;
 
-use Vain\Mongo\Database\PhongoDatabase;
-use Vain\Mongo\Document\DocumentEntityInterface;
 use Vain\Operation\Result\Failed\FailedOperationResult;
 use Vain\Operation\Result\OperationResultInterface;
 use Vain\Operation\Result\Successful\SuccessfulOperationResult;
@@ -25,22 +23,6 @@ use Vain\Operation\Result\Successful\SuccessfulOperationResult;
  */
 class DocumentInsertOperation extends AbstractDocumentOperation
 {
-    private $id;
-
-    /**
-     * DocumentInsertOperation constructor.
-     *
-     * @param PhongoDatabase          $mongoDb
-     * @param string                  $collectionName
-     * @param DocumentEntityInterface $entity
-     * @param string                  $id
-     */
-    public function __construct(PhongoDatabase $mongoDb, $collectionName, DocumentEntityInterface $entity, string $id)
-    {
-        $this->id = $id;
-        parent::__construct($mongoDb, $collectionName, $entity);
-    }
-
     /**
      * @inheritDoc
      */
@@ -49,7 +31,7 @@ class DocumentInsertOperation extends AbstractDocumentOperation
         if (false === $this
                 ->getMongoDb()
                 ->selectCollection($this->getCollectionName())
-                ->insertOne(array_merge($this->getEntity()->toDocument(), ['_id' => $this->id]))
+                ->insertOne($this->getDocumentData())
         ) {
             return new FailedOperationResult();
         }

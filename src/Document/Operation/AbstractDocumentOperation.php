@@ -12,8 +12,9 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation;
 
+use Vain\Mongo\Collection\CollectionInterface;
 use Vain\Mongo\Database\PhongoDatabase;
-use Vain\Mongo\Document\DocumentEntityInterface;
+use Vain\Mongo\Document\DocumentInterface;
 use Vain\Operation\OperationInterface;
 
 /**
@@ -25,25 +26,65 @@ abstract class AbstractDocumentOperation implements OperationInterface
 {
     private $mongoDb;
 
-    private $collectionName;
+    private $collection;
 
-    private $entity;
+    private $document;
 
     /**
      * AbstractDocumentOperation constructor.
      *
-     * @param PhongoDatabase                $mongoDb
-     * @param string                        $collectionName
-     * @param DocumentEntityInterface       $entity
+     * @param PhongoDatabase      $mongoDb
+     * @param CollectionInterface $collection
+     * @param DocumentInterface   $document
      */
     public function __construct(
         PhongoDatabase $mongoDb,
-        string $collectionName,
-        DocumentEntityInterface $entity
+        CollectionInterface $collection,
+        DocumentInterface $document
     ) {
         $this->mongoDb = $mongoDb;
-        $this->collectionName = $collectionName;
-        $this->entity = $entity;
+        $this->collection = $collection;
+        $this->document = $document;
+    }
+
+    /**
+     * @return CollectionInterface
+     */
+    public function getCollection(): CollectionInterface
+    {
+        return $this->collection;
+    }
+
+    /**
+     * @return DocumentInterface
+     */
+    public function getDocument(): DocumentInterface
+    {
+        return $this->document;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCriteria() : array
+    {
+        return $this->collection->generateCriteria($this->document);
+    }
+
+    /**
+     * @return string
+     */
+    public function getCollectionName() : string
+    {
+        return $this->getCollection()->getName();
+    }
+
+    /**
+     * @return array
+     */
+    public function getDocumentData() : array
+    {
+        return $this->collection->toArray($this->document);
     }
 
     /**
@@ -52,21 +93,5 @@ abstract class AbstractDocumentOperation implements OperationInterface
     public function getMongoDb(): PhongoDatabase
     {
         return $this->mongoDb;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCollectionName(): string
-    {
-        return $this->collectionName;
-    }
-
-    /**
-     * @return DocumentEntityInterface
-     */
-    public function getEntity(): DocumentEntityInterface
-    {
-        return $this->entity;
     }
 }

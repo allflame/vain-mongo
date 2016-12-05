@@ -12,17 +12,24 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document;
 
-use Vain\Entity\EntityInterface;
+use Vain\Mongo\Collection\CollectionInterface;
 
 /**
  * Interface DocumentEntityInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface DocumentEntityInterface extends EntityInterface
+interface DocumentInterface
 {
     /**
+     * @return string
+     */
+    public function getName() : string;
+
+    /**
+     * @param CollectionInterface $collection
+     *
      * @return array
      */
-    public function toDocument() : array;
+    public function toDocument(CollectionInterface $collection) : array;
 }

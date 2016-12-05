@@ -12,7 +12,8 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation\Factory;
 
-use Vain\Mongo\Document\DocumentEntityInterface;
+use Vain\Mongo\Collection\CollectionInterface;
+use Vain\Mongo\Document\DocumentInterface;
 use Vain\Operation\OperationInterface;
 
 /**
@@ -23,39 +24,39 @@ use Vain\Operation\OperationInterface;
 interface DocumentOperationFactoryInterface
 {
     /**
-     * @param string                  $collectionName
-     * @param DocumentEntityInterface $entity
+     * @param CollectionInterface $collection
+     * @param DocumentInterface   $document
      *
      * @return OperationInterface
      */
-    public function createDocument(string $collectionName, DocumentEntityInterface $entity) : OperationInterface;
+    public function createDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface;
 
     /**
-     * @param string                  $collectionName
-     * @param DocumentEntityInterface $entity
+     * @param CollectionInterface $collection
+     * @param DocumentInterface   $document
      *
      * @return OperationInterface
      */
-    public function deleteDocument(string $collectionName, DocumentEntityInterface $entity) : OperationInterface;
+    public function deleteDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface;
 
     /**
-     * @param string                  $collectionName
-     * @param DocumentEntityInterface $newEntity
-     * @param DocumentEntityInterface $oldEntity
+     * @param CollectionInterface $collection
+     * @param DocumentInterface   $newDocument
+     * @param DocumentInterface   $oldDocument
      *
      * @return OperationInterface
      */
     public function updateDocument(
-        string $collectionName,
-        DocumentEntityInterface $newEntity,
-        DocumentEntityInterface $oldEntity
+        CollectionInterface $collection,
+        DocumentInterface $newDocument,
+        DocumentInterface $oldDocument
     ) : OperationInterface;
 
     /**
-     * @param string                  $collectionName
-     * @param DocumentEntityInterface $entity
+     * @param CollectionInterface $collection
+     * @param DocumentInterface   $document
      *
      * @return OperationInterface
      */
-    public function upsertDocument(string $collectionName, DocumentEntityInterface $entity) : OperationInterface;
+    public function upsertDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface;
 }
