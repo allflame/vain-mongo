@@ -103,9 +103,8 @@ class DocumentOperationFactory extends AbstractOperationFactoryDecorator impleme
                 $this->mongodb,
                 $collectionName,
                 $entity,
-                ['_id' => $this->keyStorage->getKey($collectionName)->generateId($entity)]
+                $this->keyStorage->getKey($collectionName)->generateCriteria($entity)
             )
         );
     }
-
 }
