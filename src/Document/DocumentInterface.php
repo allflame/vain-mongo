@@ -24,7 +24,7 @@ interface DocumentInterface
     /**
      * @return string
      */
-    public function getName() : string;
+    public function getDocumentName() : string;
 
     /**
      * @param CollectionInterface $collection

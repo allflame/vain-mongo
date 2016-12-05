@@ -32,7 +32,7 @@ class UnsupportedDocumentException extends CollectionException
             sprintf(
                 'Collection %s cannot store document %s',
                 $collection->getName(),
-                $document->getName()
+                $document->getDocumentName()
             )
         );
     }
