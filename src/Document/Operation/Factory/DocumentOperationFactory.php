@@ -16,6 +16,9 @@ use Vain\Mongo\Collection\Key\Storage\CollectionKeyStorageInterface;
 use Vain\Mongo\Database\PhongoDatabase;
 use Vain\Mongo\Document\DocumentEntityInterface;
 use Vain\Mongo\Document\Operation\DocumentDeleteOperation;
+use Vain\Mongo\Document\Operation\DocumentInsertOperation;
+use Vain\Mongo\Document\Operation\DocumentUpdateOperation;
+use Vain\Mongo\Document\Operation\DocumentUpsertOperation;
 use Vain\Operation\Factory\Decorator\AbstractOperationFactoryDecorator;
 use Vain\Operation\Factory\OperationFactoryInterface;
 use Vain\Operation\OperationInterface;
@@ -56,7 +59,14 @@ class DocumentOperationFactory extends AbstractOperationFactoryDecorator impleme
      */
     public function createDocument(string $collectionName, DocumentEntityInterface $entity) : OperationInterface
     {
-        return $this->upsertDocument($collectionName, $entity);
+        return $this->decorate(
+            new DocumentInsertOperation(
+                $this->mongodb,
+                $collectionName,
+                $entity,
+                $this->keyStorage->getKey($collectionName)->generateId($entity)
+            )
+        );
     }
 
     /**
@@ -84,7 +94,7 @@ class DocumentOperationFactory extends AbstractOperationFactoryDecorator impleme
     ) : OperationInterface
     {
         return $this->decorate(
-            new DocumentDeleteOperation(
+            new DocumentUpdateOperation(
                 $this->mongodb,
                 $collectionName,
                 $newEntity,
@@ -99,7 +109,7 @@ class DocumentOperationFactory extends AbstractOperationFactoryDecorator impleme
     public function upsertDocument(string $collectionName, DocumentEntityInterface $entity) : OperationInterface
     {
         return $this->decorate(
-            new DocumentDeleteOperation(
+            new DocumentUpsertOperation(
                 $this->mongodb,
                 $collectionName,
                 $entity,
