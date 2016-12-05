@@ -47,7 +47,6 @@ class DocumentOperationFactory extends AbstractOperationFactoryDecorator impleme
         OperationFactoryInterface $operationFactory,
         PhongoDatabase $mongodb,
         CollectionKeyStorageInterface $keyStorage
-
     ) {
         $this->mongodb = $mongodb;
         $this->keyStorage = $keyStorage;
