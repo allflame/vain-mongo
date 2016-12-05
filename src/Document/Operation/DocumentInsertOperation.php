@@ -31,7 +31,7 @@ class DocumentInsertOperation extends AbstractDocumentOperation
         if (false === $this
                 ->getMongoDb()
                 ->selectCollection($this->getCollectionName())
-                ->insertOne($this->getDocumentData())
+                ->insertOne(array_merge(['_id' => $this->getDocumentId()], $this->getDocumentData()))
         ) {
             return new FailedOperationResult();
         }

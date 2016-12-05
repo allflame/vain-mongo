@@ -88,6 +88,14 @@ abstract class AbstractDocumentOperation implements OperationInterface
     }
 
     /**
+     * @return string
+     */
+    public function getDocumentId() : string
+    {
+        return $this->collection->generateId($this->document);
+    }
+
+    /**
      * @return PhongoDatabase
      */
     public function getMongoDb(): PhongoDatabase
