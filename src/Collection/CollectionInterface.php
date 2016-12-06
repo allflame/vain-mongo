@@ -39,11 +39,4 @@ interface CollectionInterface
      * @return string
      */
     public function generateId(DocumentInterface $document) : string;
-
-    /**
-     * @param DocumentInterface $document
-     *
-     * @return array
-     */
-    public function toArray(DocumentInterface $document) : array;
 }

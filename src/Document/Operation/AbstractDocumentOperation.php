@@ -84,7 +84,7 @@ abstract class AbstractDocumentOperation implements OperationInterface
      */
     public function getDocumentData() : array
     {
-        return $this->collection->toArray($this->document);
+        return $this->document->toDocument($this->collection);
     }
 
     /**

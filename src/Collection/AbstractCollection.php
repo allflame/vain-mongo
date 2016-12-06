@@ -53,13 +53,6 @@ abstract class AbstractCollection implements CollectionInterface
     /**
      * @param DocumentInterface $document
      *
-     * @return array
-     */
-    abstract public function doToArray(DocumentInterface $document) : array;
-
-    /**
-     * @param DocumentInterface $document
-     *
      * @return string
      */
     abstract public function doGenerateId(DocumentInterface $document) : string;
@@ -94,17 +87,4 @@ abstract class AbstractCollection implements CollectionInterface
 
         return $this->doGenerateId($document);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function toArray(DocumentInterface $document) : array
-    {
-        if (false === $this->supports($document)) {
-            throw new UnsupportedDocumentException($this, $document);
-        }
-
-        return $this->doToArray($document);
-    }
-
 }
