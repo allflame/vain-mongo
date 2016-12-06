@@ -21,7 +21,8 @@
         "vain/core": "^0.4",
         "vain/connection": "^0.4",
         "vain/database": "^0.4",
-        "vain/entity": "^0.4"
+        "vain/entity": "^0.4",
+        "vain/time": "^0.4"
     },
     "repositories": [
         {
