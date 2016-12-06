@@ -12,6 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation;
 
+use MongoDB\BSON\ObjectID;
 use Vain\Operation\Result\Failed\FailedOperationResult;
 use Vain\Operation\Result\OperationResultInterface;
 use Vain\Operation\Result\Successful\SuccessfulOperationResult;
@@ -31,7 +32,7 @@ class DocumentInsertOperation extends AbstractDocumentOperation
         if (false === $this
                 ->getMongoDb()
                 ->selectCollection($this->getCollectionName())
-                ->insertOne(array_merge(['_id' => $this->generateDocumentId()], $this->getDocumentData()))
+                ->insertOne(array_merge(['_id' => new ObjectID($this->generateDocumentId())], $this->getDocumentData()))
         ) {
             return new FailedOperationResult();
         }
