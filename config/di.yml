@@ -18,3 +18,6 @@ services:
     class: Vain\Mongo\Document\Operation\Factory\DocumentOperationFactory
     arguments: ['@database.document']
   document.operation.factory: '@document.operation.factory.phongo'
+  document.collection.abstract:
+    abstract: true
+    arguments: ['@time.counter']

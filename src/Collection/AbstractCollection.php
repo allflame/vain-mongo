@@ -31,13 +31,13 @@ abstract class AbstractCollection implements CollectionInterface
     /**
      * AbstractCollection constructor.
      *
-     * @param string               $name
      * @param TimeCounterInterface $counter
+     * @param string               $name
      */
-    public function __construct(string $name, TimeCounterInterface $counter)
+    public function __construct(TimeCounterInterface $counter, string $name)
     {
-        $this->name = $name;
         $this->counter = $counter;
+        $this->name = $name;
     }
 
     /**
