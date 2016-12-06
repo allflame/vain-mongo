@@ -20,4 +20,4 @@ services:
   document.operation.factory: '@document.operation.factory.phongo'
   document.collection.abstract:
     abstract: true
-    arguments: ['@time.counter']
+    arguments: ['@counter']

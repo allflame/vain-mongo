@@ -14,7 +14,7 @@ namespace Vain\Mongo\Collection;
 
 use Vain\Mongo\Document\DocumentInterface;
 use Vain\Mongo\Exception\UnsupportedDocumentException;
-use Vain\Time\Counter\TimeCounterInterface;
+use Vain\Core\Counter\CounterInterface;
 
 /**
  * Class AbstractCollection
@@ -31,10 +31,10 @@ abstract class AbstractCollection implements CollectionInterface
     /**
      * AbstractCollection constructor.
      *
-     * @param TimeCounterInterface $counter
+     * @param CounterInterface $counter
      * @param string               $name
      */
-    public function __construct(TimeCounterInterface $counter, string $name)
+    public function __construct(CounterInterface $counter, string $name)
     {
         $this->counter = $counter;
         $this->name = $name;
@@ -49,9 +49,9 @@ abstract class AbstractCollection implements CollectionInterface
     }
 
     /**
-     * @return TimeCounterInterface
+     * @return CounterInterface
      */
-    public function getCounter(): TimeCounterInterface
+    public function getCounter(): CounterInterface
     {
         return $this->counter;
     }
