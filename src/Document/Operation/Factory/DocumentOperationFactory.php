@@ -19,7 +19,7 @@ use Vain\Mongo\Document\Operation\DocumentDeleteOperation;
 use Vain\Mongo\Document\Operation\DocumentInsertOperation;
 use Vain\Mongo\Document\Operation\DocumentUpdateOperation;
 use Vain\Mongo\Document\Operation\DocumentUpsertOperation;
-use Vain\Operation\Factory\Decorator\AbstractOperationFactoryDecorator;
+use Vain\Operation\Factory\AbstractOperationFactory;
 use Vain\Operation\Factory\OperationFactoryInterface;
 use Vain\Operation\OperationInterface;
 
@@ -28,7 +28,7 @@ use Vain\Operation\OperationInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class DocumentOperationFactory extends AbstractOperationFactoryDecorator implements
+class DocumentOperationFactory extends AbstractOperationFactory implements
     DocumentOperationFactoryInterface
 {
 
@@ -37,8 +37,8 @@ class DocumentOperationFactory extends AbstractOperationFactoryDecorator impleme
     /**
      * OperationCollectionFactory constructor.
      *
-     * @param OperationFactoryInterface     $operationFactory
-     * @param PhongoDatabase                $mongodb
+     * @param OperationFactoryInterface $operationFactory
+     * @param PhongoDatabase            $mongodb
      */
     public function __construct(
         OperationFactoryInterface $operationFactory,
