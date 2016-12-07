@@ -21,3 +21,8 @@ services:
   document.collection.abstract:
     abstract: true
     arguments: ['@counter']
+  connection.factory.phongo.proxy:
+    class: Vain\Connection\Factory\Decorator\Proxy\ConnectionFactoryProxyDecorator
+    decorates: connection.phongo.doctrine
+    decoration_priority: 100
+    arguments: ['@connection.factory.phongo.proxy.inner']
