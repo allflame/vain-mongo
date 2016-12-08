@@ -13,9 +13,9 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Database;
 
 use MongoDB\Database;
+use Vain\Connection\ConnectionInterface;
 use Vain\Database\DatabaseInterface;
 use Vain\Database\Generator\GeneratorInterface;
-use Vain\Mongo\Connection\PhongoConnection;
 
 /**
  * Class PhongoDatabase
@@ -29,9 +29,9 @@ class PhongoDatabase extends Database implements DatabaseInterface
     /**
      * MongoDatabase constructor.
      *
-     * @param PhongoConnection $connection
+     * @param ConnectionInterface $connection
      */
-    public function __construct(PhongoConnection $connection)
+    public function __construct(ConnectionInterface $connection)
     {
         $this->connection = $connection;
     }
