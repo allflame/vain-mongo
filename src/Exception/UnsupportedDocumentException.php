@@ -24,6 +24,12 @@ class UnsupportedDocumentException extends CollectionException
 {
     private $document;
 
+    /**
+     * UnsupportedDocumentException constructor.
+     *
+     * @param CollectionInterface $collection
+     * @param DocumentInterface   $document
+     */
     public function __construct(CollectionInterface $collection, DocumentInterface $document)
     {
         $this->document = $document;
