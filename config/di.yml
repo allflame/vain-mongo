@@ -23,6 +23,6 @@ services:
     arguments: ['@counter']
   connection.factory.phongo.proxy:
     class: Vain\Connection\Factory\Decorator\Proxy\ConnectionFactoryProxyDecorator
-    decorates: connection.phongo.doctrine
+    decorates: connection.factory.phongo
     decoration_priority: 100
     arguments: ['@connection.factory.phongo.proxy.inner']
