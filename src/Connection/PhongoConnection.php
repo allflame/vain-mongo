@@ -97,7 +97,7 @@ class PhongoConnection implements ConnectionInterface
      */
     public function getName() : string
     {
-        return $this->configData['type'];
+        return $this->configData['driver'];
     }
 
     /**
