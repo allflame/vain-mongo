@@ -3,6 +3,11 @@ parameters:
   database.factory.phongo.name: 'mongo'
 
 services:
+  database.document:
+    class: \MongoDB
+    factory: ['@database.storage', getDatabase]
+    arguments:
+      - 'document'
   connection.factory.phongo:
     class: Vain\Mongo\Connection\Factory\PhongoConnectionFactory
     arguments: ['%connection.factory.phongo.name%']
