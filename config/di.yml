@@ -1,9 +1,10 @@
 parameters:
   connection.factory.phongo.name: 'phongo'
   database.factory.phongo.name: 'mongo'
+  database.document.name: 'document'
 
 services:
-  database.document:
+  database.document.name:
     class: \MongoDB
     factory: ['@database.storage', getDatabase]
     arguments:
