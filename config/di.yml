@@ -4,7 +4,7 @@ parameters:
   database.document.name: 'document'
 
 services:
-  database.document.name:
+  database.document:
     class: \MongoDB
     factory: ['@database.storage', getDatabase]
     arguments:
