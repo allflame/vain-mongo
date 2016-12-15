@@ -16,16 +16,16 @@ use Vain\Core\Exception\AbstractCoreException;
 use Vain\Mongo\Collection\OperationCollectionInterface;
 
 /**
- * Class CollectionException
+ * Class OperationCollectionException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class CollectionException extends AbstractCoreException
+class OperationCollectionException extends AbstractCoreException
 {
     private $collection;
 
     /**
-     * CollectionException constructor.
+     * OperationCollectionException constructor.
      *
      * @param OperationCollectionInterface $collection
      * @param string              $message

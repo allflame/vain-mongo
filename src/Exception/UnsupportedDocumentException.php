@@ -20,7 +20,7 @@ use Vain\Mongo\Document\DocumentInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class UnsupportedDocumentException extends CollectionException
+class UnsupportedDocumentException extends OperationCollectionException
 {
     private $document;
 
