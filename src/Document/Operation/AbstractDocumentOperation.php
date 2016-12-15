@@ -15,7 +15,7 @@ namespace Vain\Mongo\Document\Operation;
 use Vain\Mongo\Collection\OperationCollectionInterface;
 use Vain\Mongo\Database\PhongoDatabase;
 use Vain\Mongo\Document\DocumentInterface;
-use Vain\Operation\AbstractOperation;
+use Vain\Core\Operation\AbstractOperation;
 
 /**
  * Class AbstractDocumentOperation
