@@ -12,14 +12,14 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation\Factory;
 
-use Vain\Mongo\Collection\CollectionInterface;
+use Vain\Core\Operation\Factory\Decorator\AbstractOperationFactoryDecorator;
 use Vain\Mongo\Database\PhongoDatabase;
+use Vain\Mongo\Document\Collection\DocumentCollectionInterface;
 use Vain\Mongo\Document\DocumentInterface;
 use Vain\Mongo\Document\Operation\DocumentDeleteOperation;
 use Vain\Mongo\Document\Operation\DocumentInsertOperation;
 use Vain\Mongo\Document\Operation\DocumentUpdateOperation;
 use Vain\Mongo\Document\Operation\DocumentUpsertOperation;
-use Vain\Operation\Factory\AbstractOperationFactory;
 use Vain\Core\Operation\Factory\OperationFactoryInterface;
 use Vain\Core\Operation\OperationInterface;
 
@@ -28,7 +28,7 @@ use Vain\Core\Operation\OperationInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class DocumentOperationFactory extends AbstractOperationFactory implements
+class DocumentOperationFactory extends AbstractOperationFactoryDecorator implements
     DocumentOperationFactoryInterface
 {
 
@@ -52,7 +52,7 @@ class DocumentOperationFactory extends AbstractOperationFactory implements
      * @inheritDoc
      */
     public function createDocument(
-        OperationCollectionInterface $collection,
+        DocumentCollectionInterface $collection,
         DocumentInterface $document
     ) : OperationInterface
     {
@@ -63,7 +63,7 @@ class DocumentOperationFactory extends AbstractOperationFactory implements
      * @inheritDoc
      */
     public function deleteDocument(
-        OperationCollectionInterface $collection,
+        DocumentCollectionInterface $collection,
         DocumentInterface $document
     ) : OperationInterface
     {
@@ -74,7 +74,7 @@ class DocumentOperationFactory extends AbstractOperationFactory implements
      * @inheritDoc
      */
     public function updateDocument(
-        OperationCollectionInterface $collection,
+        DocumentCollectionInterface $collection,
         DocumentInterface $newDocument,
         DocumentInterface $oldDocument
     ) : OperationInterface
@@ -86,7 +86,7 @@ class DocumentOperationFactory extends AbstractOperationFactory implements
      * @inheritDoc
      */
     public function upsertDocument(
-        OperationCollectionInterface $collection,
+        DocumentCollectionInterface $collection,
         DocumentInterface $document
     ) : OperationInterface
     {

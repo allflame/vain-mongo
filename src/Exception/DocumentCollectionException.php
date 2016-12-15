@@ -13,27 +13,27 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Exception;
 
 use Vain\Core\Exception\AbstractCoreException;
-use Vain\Mongo\Collection\CollectionInterface;
+use Vain\Mongo\Document\Collection\DocumentCollectionInterface;
 
 /**
- * Class OperationCollectionException
+ * Class DocumentCollectionException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class OperationCollectionException extends AbstractCoreException
+class DocumentCollectionException extends AbstractCoreException
 {
     private $collection;
 
     /**
      * OperationCollectionException constructor.
      *
-     * @param OperationCollectionInterface $collection
-     * @param string              $message
-     * @param int                 $code
-     * @param \Exception|null     $previous
+     * @param DocumentCollectionInterface $collection
+     * @param string                      $message
+     * @param int                         $code
+     * @param \Exception|null             $previous
      */
     public function __construct(
-        OperationCollectionInterface $collection,
+        DocumentCollectionInterface $collection,
         string $message,
         int $code = 500,
         \Exception $previous = null
@@ -43,9 +43,9 @@ class OperationCollectionException extends AbstractCoreException
     }
 
     /**
-     * @return OperationCollectionInterface
+     * @return DocumentCollectionInterface
      */
-    public function getCollection(): OperationCollectionInterface
+    public function getCollection(): DocumentCollectionInterface
     {
         return $this->collection;
     }

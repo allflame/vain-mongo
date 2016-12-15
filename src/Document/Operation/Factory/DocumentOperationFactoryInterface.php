@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation\Factory;
 
-use Vain\Mongo\Collection\CollectionInterface;
+use Vain\Mongo\Document\Collection\DocumentCollectionInterface;
 use Vain\Mongo\Document\DocumentInterface;
 use Vain\Core\Operation\OperationInterface;
 
@@ -24,39 +24,48 @@ use Vain\Core\Operation\OperationInterface;
 interface DocumentOperationFactoryInterface
 {
     /**
-     * @param OperationCollectionInterface $collection
-     * @param DocumentInterface   $document
+     * @param DocumentCollectionInterface $collection
+     * @param DocumentInterface           $document
      *
      * @return OperationInterface
      */
-    public function createDocument(OperationCollectionInterface $collection, DocumentInterface $document) : OperationInterface;
+    public function createDocument(
+        DocumentCollectionInterface $collection,
+        DocumentInterface $document
+    ) : OperationInterface;
 
     /**
-     * @param OperationCollectionInterface $collection
-     * @param DocumentInterface   $document
+     * @param DocumentCollectionInterface $collection
+     * @param DocumentInterface           $document
      *
      * @return OperationInterface
      */
-    public function deleteDocument(OperationCollectionInterface $collection, DocumentInterface $document) : OperationInterface;
+    public function deleteDocument(
+        DocumentCollectionInterface $collection,
+        DocumentInterface $document
+    ) : OperationInterface;
 
     /**
-     * @param OperationCollectionInterface $collection
-     * @param DocumentInterface   $newDocument
-     * @param DocumentInterface   $oldDocument
+     * @param DocumentCollectionInterface $collection
+     * @param DocumentInterface           $newDocument
+     * @param DocumentInterface           $oldDocument
      *
      * @return OperationInterface
      */
     public function updateDocument(
-        OperationCollectionInterface $collection,
+        DocumentCollectionInterface $collection,
         DocumentInterface $newDocument,
         DocumentInterface $oldDocument
     ) : OperationInterface;
 
     /**
-     * @param OperationCollectionInterface $collection
-     * @param DocumentInterface   $document
+     * @param DocumentCollectionInterface $collection
+     * @param DocumentInterface           $document
      *
      * @return OperationInterface
      */
-    public function upsertDocument(OperationCollectionInterface $collection, DocumentInterface $document) : OperationInterface;
+    public function upsertDocument(
+        DocumentCollectionInterface $collection,
+        DocumentInterface $document
+    ) : OperationInterface;
 }

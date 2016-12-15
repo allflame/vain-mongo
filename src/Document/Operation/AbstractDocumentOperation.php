@@ -12,8 +12,8 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation;
 
-use Vain\Mongo\Collection\CollectionInterface;
 use Vain\Mongo\Database\PhongoDatabase;
+use Vain\Mongo\Document\Collection\DocumentCollectionInterface;
 use Vain\Mongo\Document\DocumentInterface;
 use Vain\Core\Operation\AbstractOperation;
 
@@ -33,13 +33,13 @@ abstract class AbstractDocumentOperation extends AbstractOperation
     /**
      * AbstractDocumentOperation constructor.
      *
-     * @param PhongoDatabase      $mongoDb
-     * @param OperationCollectionInterface $collection
-     * @param DocumentInterface   $document
+     * @param PhongoDatabase              $mongoDb
+     * @param DocumentCollectionInterface $collection
+     * @param DocumentInterface           $document
      */
     public function __construct(
         PhongoDatabase $mongoDb,
-        OperationCollectionInterface $collection,
+        DocumentCollectionInterface $collection,
         DocumentInterface $document
     ) {
         $this->mongoDb = $mongoDb;
@@ -48,9 +48,9 @@ abstract class AbstractDocumentOperation extends AbstractOperation
     }
 
     /**
-     * @return OperationCollectionInterface
+     * @return DocumentCollectionInterface
      */
-    public function getCollection(): OperationCollectionInterface
+    public function getCollection(): DocumentCollectionInterface
     {
         return $this->collection;
     }
