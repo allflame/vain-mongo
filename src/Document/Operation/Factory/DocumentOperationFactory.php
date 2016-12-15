@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation\Factory;
 
-use Vain\Mongo\Collection\CollectionInterface;
+use Vain\Mongo\Collection\OperationCollectionInterface;
 use Vain\Mongo\Database\PhongoDatabase;
 use Vain\Mongo\Document\DocumentInterface;
 use Vain\Mongo\Document\Operation\DocumentDeleteOperation;
@@ -51,7 +51,7 @@ class DocumentOperationFactory extends AbstractOperationFactory implements
     /**
      * @inheritDoc
      */
-    public function createDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface
+    public function createDocument(OperationCollectionInterface $collection, DocumentInterface $document) : OperationInterface
     {
         return $this->decorate(new DocumentInsertOperation($this->mongodb, $collection, $document));
     }
@@ -59,7 +59,7 @@ class DocumentOperationFactory extends AbstractOperationFactory implements
     /**
      * @inheritDoc
      */
-    public function deleteDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface
+    public function deleteDocument(OperationCollectionInterface $collection, DocumentInterface $document) : OperationInterface
     {
         return $this->decorate(new DocumentDeleteOperation($this->mongodb, $collection, $document));
     }
@@ -68,7 +68,7 @@ class DocumentOperationFactory extends AbstractOperationFactory implements
      * @inheritDoc
      */
     public function updateDocument(
-        CollectionInterface $collection,
+        OperationCollectionInterface $collection,
         DocumentInterface $newDocument,
         DocumentInterface $oldDocument
     ) : OperationInterface
@@ -79,7 +79,7 @@ class DocumentOperationFactory extends AbstractOperationFactory implements
     /**
      * @inheritDoc
      */
-    public function upsertDocument(CollectionInterface $collection, DocumentInterface $document) : OperationInterface
+    public function upsertDocument(OperationCollectionInterface $collection, DocumentInterface $document) : OperationInterface
     {
         return $this->decorate(new DocumentUpsertOperation($this->mongodb, $collection, $document));
     }

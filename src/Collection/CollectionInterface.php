@@ -15,11 +15,11 @@ namespace Vain\Mongo\Collection;
 use Vain\Mongo\Document\DocumentInterface;
 
 /**
- * Class CollectionInterface
+ * Class OperationCollectionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface CollectionInterface
+interface OperationCollectionInterface
 {
     /**
      * @return string

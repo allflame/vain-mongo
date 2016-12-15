@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Exception;
 
-use Vain\Mongo\Collection\CollectionInterface;
+use Vain\Mongo\Collection\OperationCollectionInterface;
 use Vain\Mongo\Document\DocumentInterface;
 
 /**
@@ -27,10 +27,10 @@ class UnsupportedDocumentException extends CollectionException
     /**
      * UnsupportedDocumentException constructor.
      *
-     * @param CollectionInterface $collection
+     * @param OperationCollectionInterface $collection
      * @param DocumentInterface   $document
      */
-    public function __construct(CollectionInterface $collection, DocumentInterface $document)
+    public function __construct(OperationCollectionInterface $collection, DocumentInterface $document)
     {
         $this->document = $document;
         parent::__construct(

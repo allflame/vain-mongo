@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document;
 
-use Vain\Mongo\Collection\CollectionInterface;
+use Vain\Mongo\Collection\OperationCollectionInterface;
 
 /**
  * Interface DocumentEntityInterface
@@ -27,9 +27,9 @@ interface DocumentInterface
     public function getDocumentName() : string;
 
     /**
-     * @param CollectionInterface $collection
+     * @param OperationCollectionInterface $collection
      *
      * @return array
      */
-    public function toDocument(CollectionInterface $collection) : array;
+    public function toDocument(OperationCollectionInterface $collection) : array;
 }

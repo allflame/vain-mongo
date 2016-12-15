@@ -21,7 +21,7 @@ use Vain\Core\Counter\CounterInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractCollection implements CollectionInterface
+abstract class AbstractCollection implements OperationCollectionInterface
 {
 
     private $name;
