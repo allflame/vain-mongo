@@ -14,7 +14,7 @@ namespace Vain\Mongo\Document\Operation\Factory;
 
 use Vain\Mongo\Collection\CollectionInterface;
 use Vain\Mongo\Document\DocumentInterface;
-use Vain\Operation\OperationInterface;
+use Vain\Core\Operation\OperationInterface;
 
 /**
  * Interface OperationCollectionFactoryInterface

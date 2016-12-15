@@ -13,9 +13,9 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Document\Operation;
 
 use MongoDB\BSON\ObjectID;
-use Vain\Operation\Result\Failed\FailedOperationResult;
-use Vain\Operation\Result\OperationResultInterface;
-use Vain\Operation\Result\Successful\SuccessfulOperationResult;
+use Vain\Core\Result\FailedResult;
+use Vain\Core\Result\ResultInterface;
+use Vain\Core\Result\SuccessfulResult;
 
 /**
  * Class CollectionInsertOperation
@@ -27,16 +27,16 @@ class DocumentInsertOperation extends AbstractDocumentOperation
     /**
      * @inheritDoc
      */
-    public function execute() : OperationResultInterface
+    public function execute() : ResultInterface
     {
         if (false === $this
                 ->getMongoDb()
                 ->selectCollection($this->getCollectionName())
                 ->insertOne(array_merge(['_id' => new ObjectID($this->generateDocumentId())], $this->getDocumentData()))
         ) {
-            return new FailedOperationResult();
+            return new FailedResult();
         }
 
-        return new SuccessfulOperationResult();
+        return new SuccessfulResult();
     }
 }

@@ -12,9 +12,9 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation;
 
-use Vain\Operation\Result\Failed\FailedOperationResult;
-use Vain\Operation\Result\OperationResultInterface;
-use Vain\Operation\Result\Successful\SuccessfulOperationResult;
+use Vain\Core\Result\FailedResult;
+use Vain\Core\Result\ResultInterface;
+use Vain\Core\Result\SuccessfulResult;
 
 /**
  * Class CollectionUpsertOperation
@@ -26,7 +26,7 @@ class DocumentUpsertOperation extends AbstractDocumentOperation
     /**
      * @inheritDoc
      */
-    public function execute() : OperationResultInterface
+    public function execute() : ResultInterface
     {
         $documentId = $this->generateDocumentId();
         if (false === $this
@@ -38,9 +38,9 @@ class DocumentUpsertOperation extends AbstractDocumentOperation
                     ['upsert' => true]
                 )
         ) {
-            return new FailedOperationResult();
+            return new FailedResult();
         }
 
-        return new SuccessfulOperationResult();
+        return new SuccessfulResult();
     }
 }

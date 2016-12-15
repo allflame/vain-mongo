@@ -20,8 +20,8 @@ use Vain\Mongo\Document\Operation\DocumentInsertOperation;
 use Vain\Mongo\Document\Operation\DocumentUpdateOperation;
 use Vain\Mongo\Document\Operation\DocumentUpsertOperation;
 use Vain\Operation\Factory\AbstractOperationFactory;
-use Vain\Operation\Factory\OperationFactoryInterface;
-use Vain\Operation\OperationInterface;
+use Vain\Core\Operation\Factory\OperationFactoryInterface;
+use Vain\Core\Operation\OperationInterface;
 
 /**
  * Class CollectionOperationFactory
