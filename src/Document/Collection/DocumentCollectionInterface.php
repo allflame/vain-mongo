@@ -10,16 +10,16 @@
  */
 declare(strict_types = 1);
 
-namespace Vain\Mongo\Collection;
+namespace Vain\Mongo\Document\Collection;
 
 use Vain\Mongo\Document\DocumentInterface;
 
 /**
- * Class OperationCollectionInterface
+ * Class DocumentCollectionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface OperationCollectionInterface
+interface DocumentCollectionInterface
 {
     /**
      * @return string

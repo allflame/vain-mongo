@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document;
 
-use Vain\Mongo\Collection\OperationCollectionInterface;
+use Vain\Mongo\Collection\CollectionInterface;
 
 /**
  * Interface DocumentEntityInterface

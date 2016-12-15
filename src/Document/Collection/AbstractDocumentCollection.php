@@ -10,7 +10,7 @@
  */
 declare(strict_types = 1);
 
-namespace Vain\Mongo\Collection;
+namespace Vain\Mongo\Document\Collection;
 
 use Vain\Mongo\Document\DocumentInterface;
 use Vain\Mongo\Exception\UnsupportedDocumentException;
@@ -21,7 +21,7 @@ use Vain\Core\Counter\CounterInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractCollection implements OperationCollectionInterface
+abstract class AbstractDocumentCollection implements DocumentCollectionInterface
 {
 
     private $name;

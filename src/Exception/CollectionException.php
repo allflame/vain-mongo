@@ -13,7 +13,7 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Exception;
 
 use Vain\Core\Exception\AbstractCoreException;
-use Vain\Mongo\Collection\OperationCollectionInterface;
+use Vain\Mongo\Collection\CollectionInterface;
 
 /**
  * Class OperationCollectionException

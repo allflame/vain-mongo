@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vain\Mongo\Document\Operation\Factory;
 
-use Vain\Mongo\Collection\OperationCollectionInterface;
+use Vain\Mongo\Collection\CollectionInterface;
 use Vain\Mongo\Document\DocumentInterface;
 use Vain\Core\Operation\OperationInterface;
 
