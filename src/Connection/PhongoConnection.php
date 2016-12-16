@@ -12,27 +12,15 @@
 namespace Vain\Mongo\Connection;
 
 use \MongoDB\Client as MongoClient;
-use Vain\Core\Connection\ConnectionInterface;
+use Vain\Core\Connection\AbstractConnection;
 
 /**
  * Class PhongoConnection
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class PhongoConnection implements ConnectionInterface
+class PhongoConnection extends AbstractConnection
 {
-
-    private $configData;
-
-    /**
-     * PhongoConnection constructor.
-     *
-     * @param array $configData
-     */
-    public function __construct(array $configData)
-    {
-        $this->configData = $configData;
-    }
 
     /**
      * @param array $config
@@ -95,18 +83,10 @@ class PhongoConnection implements ConnectionInterface
     /**
      * @inheritDoc
      */
-    public function getName() : string
-    {
-        return $this->configData['driver'];
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function establish()
     {
         list ($username, $password, $connectionString, $database, $options, $driverOptions)
-            = $this->getCredentials($this->configData);
+            = $this->getCredentials($this->getConfigData());
         $dsn = sprintf('mongodb://%s:%s@%s/%s', $username, $password, $connectionString, $database);
 
         return (new MongoClient($dsn, $options, $driverOptions))->selectDatabase($database);

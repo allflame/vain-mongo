@@ -1,5 +1,5 @@
 parameters:
-  connection.factory.phongo.name: 'phongo'
+  connection.phongo.name: 'phongo'
   database.factory.phongo.name: 'mongo'
   database.document.name: 'document'
 
@@ -8,15 +8,9 @@ services:
     class: Vain\Mongo\Database\PhongoDatabase
     arguments: ['@connection.phongo']
   connection.phongo:
+    parent: connection.abstract
     class: Vain\Mongo\Connection\PhongoConnection
-    factory: ['@connection.storage', 'getConnection']
-    arguments:
-      - 'document'
-  connection.factory.phongo:
-    parent: connection.factory.abstract
-    class: Vain\Mongo\Connection\Factory\PhongoConnectionFactory
-    tags:
-      - {name: connection.factory}
+    arguments: ['%connection.phongo.name%']
   document.operation.factory.phongo:
     parent: operation.factory.abstract
     class: Vain\Mongo\Document\Operation\Factory\DocumentOperationFactory
