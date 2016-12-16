@@ -1,7 +1,5 @@
 parameters:
-  connection.phongo.name: 'phongo'
-  database.factory.phongo.name: 'mongo'
-  database.document.name: 'document'
+  connection.phongo.name: 'mongo'
 
 services:
   database.document:
