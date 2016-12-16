@@ -13,8 +13,8 @@ services:
     arguments:
       - 'document'
   connection.factory.phongo:
+    parent: connection.factory.abstract
     class: Vain\Mongo\Connection\Factory\PhongoConnectionFactory
-    arguments: ['%connection.factory.phongo.name%']
     tags:
       - {name: connection.factory}
   document.operation.factory.phongo:
