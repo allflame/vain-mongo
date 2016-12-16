@@ -12,7 +12,7 @@
 namespace Vain\Mongo\Connection;
 
 use \MongoDB\Client as MongoClient;
-use Vain\Connection\ConnectionInterface;
+use Vain\Core\Connection\ConnectionInterface;
 
 /**
  * Class PhongoConnection

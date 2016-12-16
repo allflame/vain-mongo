@@ -11,7 +11,7 @@
 
 namespace Vain\Mongo\Database\Factory;
 
-use Vain\Connection\ConnectionInterface;
+use Vain\Core\Connection\ConnectionInterface;
 use Vain\Database\Factory\AbstractDatabaseFactory;
 use Vain\Mongo\Connection\PhongoConnection;
 use Vain\Mongo\Database\PhongoDatabase;

@@ -13,9 +13,9 @@ declare(strict_types = 1);
 namespace Vain\Mongo\Database;
 
 use MongoDB\Database;
-use Vain\Connection\ConnectionInterface;
-use Vain\Database\DatabaseInterface;
-use Vain\Database\Generator\GeneratorInterface;
+use Vain\Core\Connection\ConnectionInterface;
+use Vain\Core\Database\DatabaseInterface;
+use Vain\Core\Database\Generator\DatabaseGeneratorInterface;
 
 /**
  * Class PhongoDatabase
@@ -127,7 +127,7 @@ class PhongoDatabase extends Database implements DatabaseInterface
     /**
      * @inheritDoc
      */
-    public function runQuery($query, array $bindParams, array $bindTypes = []) : GeneratorInterface
+    public function runQuery($query, array $bindParams, array $bindTypes = []) : DatabaseGeneratorInterface
     {
         return $this->command($query, $bindParams);
     }
