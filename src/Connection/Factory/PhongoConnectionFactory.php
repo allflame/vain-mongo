@@ -25,8 +25,16 @@ class PhongoConnectionFactory extends AbstractConnectionFactory
     /**
      * @inheritDoc
      */
-    public function createConnection(array $config) : ConnectionInterface
+    public function getName() : string
     {
-        return new PhongoConnection($config);
+        return 'phongo';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createConnection(string $connectionName) : ConnectionInterface
+    {
+        return new PhongoConnection($this->getConfigData($connectionName));
     }
 }

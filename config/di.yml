@@ -5,8 +5,11 @@ parameters:
 
 services:
   database.document:
-    class: \MongoDB
-    factory: ['@database.storage', getDatabase]
+    class: Vain\Mongo\Database\PhongoDatabase
+    factory: ['@connection.phongo']
+  connection.phongo:
+    class: Vain\Mongo\Connection\PhongoConnection
+    factory: ['@connection.storage', 'getConnection']
     arguments:
       - 'document'
   connection.factory.phongo:
@@ -14,11 +17,6 @@ services:
     arguments: ['%connection.factory.phongo.name%']
     tags:
       - {name: connection.factory}
-  database.factory.phongo:
-    class: Vain\Mongo\Database\Factory\PhongoDatabaseFactory
-    arguments: ['%database.factory.phongo.name%']
-    tags:
-      - {name: database.factory}
   document.operation.factory.phongo:
     parent: operation.factory.abstract
     class: Vain\Mongo\Document\Operation\Factory\DocumentOperationFactory
