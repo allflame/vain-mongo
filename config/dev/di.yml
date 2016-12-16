@@ -1,17 +1,2 @@
 imports:
   - { resource: '../di.yml' }
-
-parameters:
-  phongo.config.required.fields: ['hosts', 'username', 'password', 'dbname']
-
-services:
-  connection.factory.phongo.assert:
-    class: Vain\Core\Connection\Factory\Decorator\Assert\ConnectionFactoryAssertDecorator
-    decorates: connection.factory.phongo
-    decoration_priority: 900
-    arguments: ['@connection.factory.phongo.assert.inner', '%phongo.config.required.fields%']
-  connection.factory.phongo.logger:
-    class: Vain\Core\Connection\Factory\Decorator\Logger\ConnectionFactoryLoggerDecorator
-    decorates: connection.factory.phongo
-    decoration_priority: 1000
-    arguments: ['@connection.factory.phongo.logger.inner', '@logger.connection']
