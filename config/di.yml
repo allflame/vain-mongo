@@ -6,7 +6,7 @@ parameters:
 services:
   database.document:
     class: Vain\Mongo\Database\PhongoDatabase
-    factory: ['@connection.phongo']
+    arguments: ['@connection.phongo']
   connection.phongo:
     class: Vain\Mongo\Connection\PhongoConnection
     factory: ['@connection.storage', 'getConnection']
