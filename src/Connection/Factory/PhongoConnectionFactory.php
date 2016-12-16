@@ -12,7 +12,7 @@
 namespace Vain\Mongo\Connection\Factory;
 
 use Vain\Core\Connection\ConnectionInterface;
-use Vain\Connection\Factory\AbstractConnectionFactory;
+use Vain\Core\Connection\Factory\AbstractConnectionFactory;
 use Vain\Mongo\Connection\PhongoConnection;
 
 /**
