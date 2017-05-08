@@ -83,7 +83,7 @@ class PhongoConnection extends AbstractConnection
     /**
      * @inheritDoc
      */
-    public function establish()
+    public function doEstablish()
     {
         list ($username, $password, $connectionString, $database, $options, $driverOptions)
             = $this->getCredentials($this->getConfigData());
