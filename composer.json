@@ -15,9 +15,9 @@
         }
     },
     "require": {
-        "php": ">=7.0",
+        "php": "^7.0",
         "ext-mongodb": "*",
-        "mongodb/mongodb": "^1.0.0",
+        "mongodb/mongodb": "^1",
         "vain/core": "^0.4"
     },
     "repositories": [
