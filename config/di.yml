@@ -5,6 +5,7 @@ services:
   database.document:
     class: Vain\Mongo\Database\PhongoDatabase
     arguments: ['@connection.phongo']
+    public: true
   connection.phongo:
     parent: connection.abstract
     class: Vain\Mongo\Connection\PhongoConnection
